@@ -377,6 +377,8 @@
                     <xs:attribute name="dead-letter-address" type="xs:string" use="optional" />
                     <xs:attribute name="expiry-address" type="xs:string" use="optional" />
                     <xs:attribute name="expiry-delay" type="xs:long" use="optional" />
+                    <xs:attribute name="auto-delete-queues-delay" type="xs:long" use="optional" />
+                    <xs:attribute name="auto-delete-queues-message-count" type="xs:long" use="optional" />
                     <xs:attribute name="redelivery-delay" type="xs:long" use="optional" />
                     <xs:attribute name="redelivery-multiplier" type="xs:double" use="optional" />
                     <xs:attribute name="max-delivery-attempts" type="xs:int" use="optional" />

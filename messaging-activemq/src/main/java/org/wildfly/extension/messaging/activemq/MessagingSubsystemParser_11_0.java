@@ -380,6 +380,8 @@ public class MessagingSubsystemParser_11_0 extends PersistentResourceXMLParser {
                                                         CommonAttributes.DEAD_LETTER_ADDRESS,
                                                         CommonAttributes.EXPIRY_ADDRESS,
                                                         AddressSettingDefinition.EXPIRY_DELAY,
+                                                        AddressSettingDefinition.AUTO_DELETE_QUEUES_DELAY,
+                                                        AddressSettingDefinition.AUTO_DELETE_QUEUES_MESSAGE_COUNT,
                                                         AddressSettingDefinition.REDELIVERY_DELAY,
                                                         AddressSettingDefinition.REDELIVERY_MULTIPLIER,
                                                         AddressSettingDefinition.MAX_DELIVERY_ATTEMPTS,

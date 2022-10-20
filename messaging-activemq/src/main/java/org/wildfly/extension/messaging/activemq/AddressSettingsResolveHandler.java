@@ -31,6 +31,8 @@ import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.AUTO_DELETE_ADDRESSES;
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.AUTO_DELETE_JMS_QUEUES;
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.AUTO_DELETE_QUEUES;
+import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.AUTO_DELETE_QUEUES_DELAY;
+import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.AUTO_DELETE_QUEUES_MESSAGE_COUNT;
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.EXPIRY_DELAY;
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.LAST_VALUE_QUEUE;
 import static org.wildfly.extension.messaging.activemq.AddressSettingDefinition.MAX_DELIVERY_ATTEMPTS;
@@ -119,6 +121,8 @@ public class AddressSettingsResolveHandler extends AbstractRuntimeOnlyHandler {
             expiryAddress.set(settings.getExpiryAddress().toString());
         }
         result.get(EXPIRY_DELAY.getName()).set(settings.getExpiryDelay());
+        result.get(AUTO_DELETE_QUEUES_DELAY.getName()).set(settings.getAutoDeleteQueuesDelay());
+        result.get(AUTO_DELETE_QUEUES_MESSAGE_COUNT.getName()).set(settings.getAutoDeleteQueuesMessageCount());
         result.get(LAST_VALUE_QUEUE.getName()).set(settings.isDefaultLastValueQueue());
         result.get(MAX_DELIVERY_ATTEMPTS.getName()).set(settings.getMaxDeliveryAttempts());
         result.get(MAX_REDELIVERY_DELAY.getName()).set(settings.getMaxRedeliveryDelay());

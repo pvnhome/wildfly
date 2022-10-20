@@ -34,6 +34,7 @@ import static org.wildfly.extension.messaging.activemq.MessagingExtension.VERSIO
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.apache.activemq.artemis.core.settings.impl.AddressSettings;
 import org.jboss.as.controller.AttributeDefinition;
 import org.jboss.as.controller.PersistentResourceDefinition;
 import org.jboss.as.controller.SimpleAttributeDefinition;
@@ -101,6 +102,20 @@ public class AddressSettingDefinition extends PersistentResourceDefinition {
 
     public static final SimpleAttributeDefinition EXPIRY_DELAY = create("expiry-delay", ModelType.LONG)
             .setDefaultValue(new ModelNode(-1L))
+            .setMeasurementUnit(MILLISECONDS)
+            .setRequired(false)
+            .setAllowExpression(true)
+            .build();
+
+    public static final SimpleAttributeDefinition AUTO_DELETE_QUEUES_DELAY = create("auto-delete-queues-delay", ModelType.LONG)
+            .setDefaultValue(new ModelNode(AddressSettings.DEFAULT_AUTO_DELETE_QUEUES_DELAY))
+            .setMeasurementUnit(MILLISECONDS)
+            .setRequired(false)
+            .setAllowExpression(true)
+            .build();
+
+    public static final SimpleAttributeDefinition AUTO_DELETE_QUEUES_MESSAGE_COUNT = create("auto-delete-queues-message-count", ModelType.LONG)
+            .setDefaultValue(new ModelNode(AddressSettings.DEFAULT_AUTO_DELETE_QUEUES_MESSAGE_COUNT))
             .setMeasurementUnit(MILLISECONDS)
             .setRequired(false)
             .setAllowExpression(true)
@@ -206,6 +221,8 @@ public class AddressSettingDefinition extends PersistentResourceDefinition {
             DEAD_LETTER_ADDRESS,
             EXPIRY_ADDRESS,
             EXPIRY_DELAY,
+            AUTO_DELETE_QUEUES_DELAY,
+            AUTO_DELETE_QUEUES_MESSAGE_COUNT,
             REDELIVERY_DELAY,
             REDELIVERY_MULTIPLIER,
             MAX_DELIVERY_ATTEMPTS,

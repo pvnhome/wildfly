@@ -39,6 +39,7 @@ import org.jboss.as.controller.OperationStepHandler;
 import org.jboss.as.controller.registry.Resource;
 import org.jboss.dmr.ModelNode;
 import org.jboss.dmr.ModelType;
+import org.wildfly.extension.messaging.activemq.logging.MessagingLogger;
 
 /**
  * {@code OperationStepHandler} adding a new address setting.
@@ -105,6 +106,16 @@ class AddressSettingAdd extends AbstractAddStepHandler {
         }
         if (config.hasDefined(AddressSettingDefinition.EXPIRY_DELAY.getName())) {
             settings.setExpiryDelay(AddressSettingDefinition.EXPIRY_DELAY.resolveModelAttribute(context, config).asLong());
+        }
+        if (config.hasDefined(AddressSettingDefinition.AUTO_DELETE_QUEUES_DELAY.getName())) {
+            long delay = AddressSettingDefinition.AUTO_DELETE_QUEUES_DELAY.resolveModelAttribute(context, config).asLong();
+            MessagingLogger.ROOT_LOGGER.warnf("EXPERIMENTAL: auto-delete-queues-delay = %d", delay);
+            settings.setAutoDeleteQueuesDelay(delay);
+        }
+        if (config.hasDefined(AddressSettingDefinition.AUTO_DELETE_QUEUES_MESSAGE_COUNT.getName())) {
+            long count = AddressSettingDefinition.AUTO_DELETE_QUEUES_MESSAGE_COUNT.resolveModelAttribute(context, config).asLong();
+            MessagingLogger.ROOT_LOGGER.warnf("EXPERIMENTAL: auto-delete-queues-message-count = %d", count);
+            settings.setAutoDeleteQueuesMessageCount(count);
         }
         if (config.hasDefined(AddressSettingDefinition.REDELIVERY_DELAY.getName())) {
             settings.setRedeliveryDelay(AddressSettingDefinition.REDELIVERY_DELAY.resolveModelAttribute(context, config).asLong());
